@@ -1,7 +1,9 @@
-use relic_tensor::Tensor;
+use relic_tensor::{DType, Tensor};
 
 fn main() {
-    let tensor = Tensor::new(vec![1.2, 3.2, 1.233]);
+    let vec: Vec<f32> = vec![];
+    let tensor =
+    Tensor::new_padded_with(vec, 4.2);
 
-    println!("{:?}", tensor.len());
+    println!("{:?}", tensor);
 }

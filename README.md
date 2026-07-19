@@ -9,14 +9,14 @@ A small deep learning framework for learning purpose
     - [X]: Tensor struct - Shape, data
     - []: Multiple constructors: 
         - [X] new, 
-        - [] new_pad, 
+        - [X] new_pad, 
         - [] zeros, 
         - [] ones, 
-        - []full, 
+        - [] full, 
         - [] rand, 
         - [] randn, 
         - [] from,
-        - [] eye 
+        - [] eye
     - []: information api: shape, rank , size, numel
     - []: Tensor indexing: Tensor[(1, 2)]
     - []: Operator overloading on the tensors: Tensor + Tensor, Tensor + scalar
