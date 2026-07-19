@@ -2,7 +2,7 @@ use crate::NestedData;
 
 #[derive(Debug, PartialEq)]
 pub struct Shape {
-    dims: Vec<usize>,
+    pub dims: Vec<usize>,
 }
 
 impl Shape {
