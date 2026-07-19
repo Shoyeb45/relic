@@ -9,6 +9,7 @@ fn scalar_tensor() {
 
     assert_eq!(*tensor.dims(), vec![]);
     assert_eq!(*tensor.flatten(), vec![1.1]);
+    assert_eq!(*tensor.stride(), []);
     assert_eq!(format!("{}", tensor), "1.1");
 }
 
@@ -20,6 +21,7 @@ fn one_d_tensor() {
 
     assert_eq!(*tensor.dims(), vec![3]);
     assert_eq!(*tensor.flatten(), [1.12, 3.21, 2.3]);
+    assert_eq!(*tensor.stride(), [1]);
     assert_eq!(format!("{}", tensor), "[1.1200, 3.2100, 2.3000]");
 }
 
@@ -31,6 +33,7 @@ fn two_d_tensor() {
 
     assert_eq!(*tensor.dims(), vec![2, 2]);
     assert_eq!(*tensor.flatten(), [1.12, 3.21, 2.3, 1.0]);
+    assert_eq!(*tensor.stride(), [2, 1]);
     assert_eq!(
         format!("{}", tensor),
         "[\n  [1.1200, 3.2100],\n  [2.3000, 1.0000]\n]"
@@ -58,6 +61,7 @@ fn three_d_tensor() {
             1.12, 3.21, 2.3, 1.0, 1.12, 3.21, 12.3, 12.0, 1.132, 3.21, 12.3, 12.0
         ]
     );
+    assert_eq!(*tensor.stride(), [4, 2, 1]);
     assert_eq!(
         format!("{}", tensor),
         "[
@@ -97,6 +101,7 @@ fn padded_tensor_2d() {
     let tensor = Tensor::new_padded_with(vec![vec![1.1], vec![2.3, 3.4]], 0.0);
     assert_eq!(*tensor.dims(), [2, 2]);
     assert_eq!(*tensor.flatten(), [1.1, 0.0, 2.3, 3.4]);
+    assert_eq!(*tensor.stride(), [2, 1]);
     assert_eq!(
         format!("{}", tensor),
         "[
@@ -120,4 +125,5 @@ fn padded_tensor_3d() {
     expected_flatten_data.extend(std::iter::repeat(pad_val).take(12));
 
     assert_eq!(*tensor.flatten(), expected_flatten_data);
+    assert_eq!(*tensor.stride(), [6, 3, 1]);
 }
