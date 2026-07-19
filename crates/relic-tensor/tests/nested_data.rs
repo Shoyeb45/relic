@@ -129,3 +129,46 @@ fn ragged_two_d_2() {
         })
     );
 }
+
+#[test]
+fn ragged_vec_2d() {
+    let vec = vec![vec![1.2, 3.2], vec![3.2, 3.1, -123.2]];
+    assert_eq!(vec.max_shape(), [2, 3]);
+}
+
+#[test]
+fn ragged_vec_3d_1() {
+    /*
+    [
+        [
+            [a, a],
+            [a, a, a]
+        ],
+        [[]],
+    ]
+     */
+    let vec = vec![vec![vec![1.2, 3.2], vec![3.2, 3.1, -123.2]], vec![vec![]]];
+    assert_eq!(vec.max_shape(), [2, 2, 3]);
+}
+
+#[test]
+fn ragged_vec_3d_2() {
+    /*
+    [
+        [
+            [a, a],
+            [a, a, a]
+        ],
+        [],
+        [],
+    ]
+     */
+    let vec = vec![vec![vec![1.2, 3.2], vec![3.2, 3.1, -123.2]], vec![], vec![]];
+    assert_eq!(vec.max_shape(), [3, 2, 3]);
+}
+
+#[test]
+fn ragged_vec_empty() {
+    let vec: Vec<f32> = vec![];
+    assert_eq!(vec.max_shape(), [0]);
+}

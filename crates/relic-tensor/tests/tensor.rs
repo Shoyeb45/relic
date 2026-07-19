@@ -92,3 +92,32 @@ fn tensor_err_2d() {
     );
 }
 
+#[test]
+fn padded_tensor_2d() {
+    let tensor = Tensor::new_padded_with(vec![vec![1.1], vec![2.3, 3.4]], 0.0);
+    assert_eq!(*tensor.dims(), [2, 2]);
+    assert_eq!(*tensor.flatten(), [1.1, 0.0, 2.3, 3.4]);
+    assert_eq!(
+        format!("{}", tensor),
+        "[
+  [1.1000, 0.0000],
+  [2.3000, 3.4000]
+]"
+    );
+}
+
+#[test]
+fn padded_tensor_3d() {
+    let pad_val = -1.0;
+    let tensor = Tensor::new_padded_with(
+        vec![vec![vec![1.2, 3.2], vec![3.2, 3.1, -1.2]], vec![], vec![]],
+        pad_val,
+    );
+
+    assert_eq!(*tensor.dims(), [3, 2, 3]);
+
+    let mut expected_flatten_data = vec![1.2, 3.2, pad_val, 3.2, 3.1, -1.2];
+    expected_flatten_data.extend(std::iter::repeat(pad_val).take(12));
+
+    assert_eq!(*tensor.flatten(), expected_flatten_data);
+}
