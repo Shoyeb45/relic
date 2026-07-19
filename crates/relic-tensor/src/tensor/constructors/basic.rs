@@ -32,20 +32,20 @@ impl Tensor {
 
     /// Create a new tensor with padded value. Using this you can create a tensor
     /// even if you pass non-rectangular vector data.
-    /// 
-    /// This method will not panic for the non-rectangular vectors. It will find the 
-    /// biggest dimension at each axis and it will pad shorter one with the padding value 
+    ///
+    /// This method will not panic for the non-rectangular vectors. It will find the
+    /// biggest dimension at each axis and it will pad shorter one with the padding value
     /// provided[`pad_value`].
-    /// 
+    ///
     /// # Args
     /// - `data` : vector or scalar
     /// - `pad_value`: pass the value that you want to be padded with
-    /// 
+    ///
     /// # Examples
-    /// 
+    ///
     /// ```
     /// use relic_tensor::{Tensor};
-    /// 
+    ///
     /// // it will add padded value to 2nd vector with 0.0
     /// let tensor = Tensor::new_padded_with(vec![vec![1.2, 3.4], vec![1.2]], 0.0);
     /// assert_eq!(**tensor.dims(), [2, 2]);
@@ -59,7 +59,7 @@ impl Tensor {
 
         Self {
             data: flattened_data,
-            shape: Shape { dims: dims },
+            shape: Shape::new_with_dims(dims),
             dtype: DType::F32,
         }
     }

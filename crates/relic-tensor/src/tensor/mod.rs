@@ -1,4 +1,5 @@
 pub mod constructors;
+pub mod indexing;
 pub mod nested_data;
 pub mod shape;
 pub mod formatters;
@@ -27,5 +28,9 @@ impl Tensor {
 
     pub fn flatten(&self) -> &Vec<f32> {
         &self.data
+    }
+
+    pub fn stride(&self) -> &Vec<usize> {
+        &self.shape.stride()
     }
 }
